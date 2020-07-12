@@ -5,12 +5,10 @@ import epi.test_framework.TestFailure;
 public class StringIntegerInterconversion {
 
   public static String intToString(int x) {
-    // TODO - you fill in here.
-    return "0";
+    return Integer.toString(x);
   }
   public static int stringToInt(String s) {
-    // TODO - you fill in here.
-    return 0;
+    return Integer.parseInt(s);
   }
   @EpiTest(testDataFile = "string_integer_interconversion.tsv")
   public static void wrapper(int x, String s) throws TestFailure {

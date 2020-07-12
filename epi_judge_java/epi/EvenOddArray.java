@@ -10,8 +10,23 @@ import java.util.List;
 public class EvenOddArray {
 
   public static void evenOdd(List<Integer> A) {
-    // TODO - you fill in here.
-    return;
+    int oddIndex = A.size() - 1;
+    int evenIndex = 0;
+    while(evenIndex < oddIndex) {
+      //is odd
+      if(A.get(evenIndex) % 2 != 0) {
+        while(oddIndex >= 0 && A.get(oddIndex) % 2 != 0) {
+          --oddIndex;
+        }
+        if(evenIndex < oddIndex) {
+          int swap = A.get(oddIndex);
+          A.set(oddIndex, A.get(evenIndex));
+          A.set(evenIndex, swap);
+        }
+      } else {
+        ++evenIndex;
+      }
+    }
   }
   @EpiTest(testDataFile = "even_odd_array.tsv")
   public static void evenOddWrapper(TimedExecutor executor, List<Integer> A)

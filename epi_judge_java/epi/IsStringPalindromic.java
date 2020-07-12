@@ -5,7 +5,15 @@ public class IsStringPalindromic {
   @EpiTest(testDataFile = "is_string_palindromic.tsv")
 
   public static boolean isPalindromic(String s) {
-    // TODO - you fill in here.
+    int i = 0;
+    int j = s.length() - 1;
+    while(i < j) {
+      if(s.charAt(i) != s.charAt(j)) {
+        return false;
+      }
+      ++i;
+      --j;
+    }
     return true;
   }
 

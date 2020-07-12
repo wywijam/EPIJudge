@@ -20,7 +20,7 @@ problem_mapping = {
                 "total": 10000
             },
             "Java: Parity.java": {
-                "passed": 0,
+                "passed": 10000,
                 "total": 10000
             },
             "Python: parity.py": {
@@ -34,7 +34,7 @@ problem_mapping = {
                 "total": 10001
             },
             "Java: SwapBits.java": {
-                "passed": 0,
+                "passed": 10001,
                 "total": 10001
             },
             "Python: swap_bits.py": {
@@ -65,7 +65,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 10000
             },
-            "Python: closest_int_same_weight.py": { 
+            "Python: closest_int_same_weight.py": {
                 "passed": 0,
                 "total": 10000
             }
@@ -176,7 +176,7 @@ problem_mapping = {
                 "total": 1001
             },
             "Java: EvenOddArray.java": {
-                "passed": 0,
+                "passed": 1001,
                 "total": 1001
             },
             "Python: even_odd_array.py": {
@@ -190,7 +190,7 @@ problem_mapping = {
                 "total": 204
             },
             "Java: DutchNationalFlag.java": {
-                "passed": 0,
+                "passed": 204,
                 "total": 204
             },
             "Python: dutch_national_flag.py": {
@@ -204,7 +204,7 @@ problem_mapping = {
                 "total": 505
             },
             "Java: IntAsArrayIncrement.java": {
-                "passed": 0,
+                "passed": 505,
                 "total": 505
             },
             "Python: int_as_array_increment.py": {
@@ -472,7 +472,7 @@ problem_mapping = {
                 "total": 10000
             },
             "Java: IsStringPalindromic.java": {
-                "passed": 0,
+                "passed": 10000,
                 "total": 10000
             },
             "Python: is_string_palindromic.py": {
@@ -486,7 +486,7 @@ problem_mapping = {
                 "total": 15002
             },
             "Java: StringIntegerInterconversion.java": {
-                "passed": 0,
+                "passed": 15002,
                 "total": 15002
             },
             "Python: string_integer_interconversion.py": {
@@ -500,7 +500,7 @@ problem_mapping = {
                 "total": 20001
             },
             "Java: ConvertBase.java": {
-                "passed": 0,
+                "passed": 20001,
                 "total": 20001
             },
             "Python: convert_base.py": {
