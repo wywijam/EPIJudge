@@ -53,8 +53,20 @@ public class RectangleIntersection {
   }
   @EpiTest(testDataFile = "rectangle_intersection.tsv")
   public static Rect intersectRectangle(Rect r1, Rect r2) {
-    // TODO - you fill in here.
-    return new Rect(0, 0, 0, 0);
+
+    if(r1.x + r1.width < r2.x
+    || r2.x + r2.width < r1.x
+    || r1.y + r1.height < r2.y
+    || r2.y + r2.height < r1.y) {
+      return new Rect(0,0,-1,-1);
+    }
+
+    int intersectX1 = Math.max(r1.x, r2.x);
+    int intersectX2 = Math.min(r1.x + r1.width, r2.x + r2.width);
+    int intersectY1 = Math.max(r1.y, r2.y);
+    int intersectY2 = Math.min(r1.y + r1.height, r2.y + r2.height);
+
+    return new Rect(intersectX1, intersectY1, intersectX2 - intersectX1, intersectY2 - intersectY1);
   }
 
   public static void main(String[] args) {

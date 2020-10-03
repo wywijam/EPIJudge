@@ -12,7 +12,7 @@ import java.util.Map;
 public class CopyPostingList {
 
   public static PostingListNode copyPostingsList(PostingListNode l) {
-    // TODO - you fill in here.
+
     return null;
   }
   @EpiUserType(ctorParams = {int.class, int.class})

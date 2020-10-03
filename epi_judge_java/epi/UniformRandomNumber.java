@@ -14,9 +14,35 @@ public class UniformRandomNumber {
     return gen.nextInt(2);
   }
 
+  private static int calcNeededIterations(int value) {
+    int ret = 0;
+    while(value != 0) {
+      value >>= 1;
+      ret++;
+    }
+    return ret;
+  }
   public static int uniformRandom(int lowerBound, int upperBound) {
-    // TODO - you fill in here.
-    return 0;
+    Random rand = new Random();
+
+
+    int max = upperBound - lowerBound;
+    int iterations = calcNeededIterations(max);
+    while(true) {
+      int ret = 0;
+      for( int i = 0; i <= iterations; ++i){
+        int coinToss = rand.nextInt(2);
+        if (coinToss == 1) {
+          ret += coinToss << i;
+          if (ret > max) {
+            break;
+          }
+        }
+      }
+      if(ret <= max) {
+        return ret + lowerBound;
+      }
+    }
   }
   private static boolean uniformRandomRunner(TimedExecutor executor,
                                              int lowerBound, int upperBound)

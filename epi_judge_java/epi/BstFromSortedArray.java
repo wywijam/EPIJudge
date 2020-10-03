@@ -9,10 +9,30 @@ import epi.test_framework.TimedExecutor;
 import java.util.List;
 public class BstFromSortedArray {
 
+  static private void buildBST(List<Integer> A, BstNode<Integer> tree) {
+    int mid = A.size() / 2;
+    tree.data = A.get(mid);
+    List<Integer> left = A.subList(0, mid);
+    List<Integer> right = A.subList(mid+1, A.size());
+    if(!left.isEmpty()) {
+      tree.left = new BstNode<>();
+      buildBST(left, tree.left);
+    }
+    if(!right.isEmpty()) {
+      tree.right = new BstNode<>();
+      buildBST(right, tree.right);
+    }
+  }
+
   public static BstNode<Integer>
   buildMinHeightBSTFromSortedArray(List<Integer> A) {
-    // TODO - you fill in here.
-    return null;
+    if(A == null || A.isEmpty()) {
+      return null;
+    }
+    BstNode<Integer> tree = new BstNode<>();
+    buildBST(A, tree);
+
+    return tree;
   }
   @EpiTest(testDataFile = "bst_from_sorted_array.tsv")
   public static int

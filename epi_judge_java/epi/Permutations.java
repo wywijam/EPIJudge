@@ -4,14 +4,29 @@ import epi.test_framework.EpiTestComparator;
 import epi.test_framework.GenericTest;
 import epi.test_framework.LexicographicalListComparator;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 public class Permutations {
-  @EpiTest(testDataFile = "permutations.tsv")
 
+  static List<List<Integer>> permutations;
+
+  static void calcPermutations(int beg, List<Integer> A) {
+    if(beg == A.size() - 1) {
+      permutations.add(A);
+    }
+    for(int i = beg; i < A.size(); ++i) {
+      Collections.swap(A, beg, i);
+      calcPermutations(beg + 1, A);
+      Collections.swap(A, beg, i);
+    }
+  }
+
+  @EpiTest(testDataFile = "permutations.tsv")
   public static List<List<Integer>> permutations(List<Integer> A) {
-    // TODO - you fill in here.
-    return null;
+    permutations = new ArrayList<>();
+    calcPermutations(0, A);
+    return permutations;
   }
   @EpiTestComparator
   public static boolean comp(List<List<Integer>> expected,

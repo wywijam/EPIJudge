@@ -12,7 +12,7 @@ public class EnumerateTrees {
 
   public static List<BinaryTreeNode<Integer>>
   generateAllBinaryTrees(int numNodes) {
-    // TODO - you fill in here.
+
     return Collections.emptyList();
   }
   public static List<Integer> serializeStructure(BinaryTreeNode<Integer> tree) {

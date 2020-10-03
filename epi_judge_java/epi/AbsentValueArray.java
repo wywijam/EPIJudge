@@ -3,11 +3,22 @@ import epi.test_framework.EpiTest;
 import epi.test_framework.GenericTest;
 import epi.test_framework.TestFailure;
 
+import java.util.BitSet;
+import java.util.Iterator;
 import java.util.List;
 public class AbsentValueArray {
 
   public static int findMissingElement(Iterable<Integer> stream) {
-    // TODO - you fill in here.
+    BitSet bits = new BitSet();
+    Iterator<Integer> iter = stream.iterator();
+    while(iter.hasNext()) {
+      bits.set(iter.next());
+    }
+    for(int i = 0; i < bits.size(); ++i) {
+      if(bits.get(i) == false) {
+        return i;
+      }
+    }
     return 0;
   }
   @EpiTest(testDataFile = "absent_value_array.tsv")

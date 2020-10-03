@@ -4,8 +4,17 @@ import epi.test_framework.GenericTest;
 public class SearchInBst {
 
   public static BstNode<Integer> searchBST(BstNode<Integer> tree, int key) {
-    // TODO - you fill in here.
-    return null;
+    while(tree != null) {
+      if(key == tree.data) {
+        return tree;
+      }
+      if(key > tree.data) {
+        tree = tree.right;
+      } else {
+        tree = tree.left;
+      }
+    }
+    return tree;
   }
   @EpiTest(testDataFile = "search_in_bst.tsv")
   public static int searchBSTWrapper(BstNode<Integer> tree, int key) {

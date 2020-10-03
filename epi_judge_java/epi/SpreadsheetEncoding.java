@@ -2,11 +2,18 @@ package epi;
 import epi.test_framework.EpiTest;
 import epi.test_framework.GenericTest;
 public class SpreadsheetEncoding {
-  @EpiTest(testDataFile = "spreadsheet_encoding.tsv")
 
+  static int charToInt(char c) {
+    return (int) c - 'A' + 1;
+  }
+  @EpiTest(testDataFile = "spreadsheet_encoding.tsv")
   public static int ssDecodeColID(final String col) {
-    // TODO - you fill in here.
-    return 0;
+    int result = 0;
+    for(char c : col.toCharArray()) {
+      result *= 26;
+      result += charToInt(c);
+    }
+    return result;
   }
 
   public static void main(String[] args) {

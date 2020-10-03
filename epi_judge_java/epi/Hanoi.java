@@ -13,9 +13,61 @@ public class Hanoi {
 
   private static final int NUM_PEGS = 3;
 
+
+
+  static List<List<Integer>> operations;
+
+  static void moveOne(int from, int to) {
+    List<Integer> operation = new ArrayList<>();
+    operation.add(from);
+    operation.add(to);
+    operations.add(operation);
+  }
+
+  private static int other(int from, int to) {
+    return 3 - from - to;
+  }
+
+  static void moveTower(int i, int from, int to) {
+    if(i < 1) {
+      return;
+    } else if( i == 1) {
+      moveOne(from, to);
+      return;
+    }
+    moveTower(i-1, from, other(from, to));
+    moveTower(1, from, to);
+    moveTower(i-1, other(from, to), to);
+  }
+
+
   public static List<List<Integer>> computeTowerHanoi(int numRings) {
     // TODO - you fill in here.
-    return Collections.emptyList();
+    operations = new ArrayList<>();
+    moveTower(numRings, 0, 1);
+
+//    int whereToMove = numRings % 2 == 0 ? 2 : 1;
+//
+//    for(int i = 0; i < numRings; ++i) {
+//      List<Integer> operation1 = new LinkedList<>();
+//      operation1.add(0); operation1.add(whereToMove);
+//      operations.add(operation1);
+//      //move all others
+//      int j = i;
+//      while(j > 1) {
+//        List<Integer> operation2 = new LinkedList<>();
+//        int fromWhereMoving = calcNext(whereToMove);
+//        operation2.add(fromWhereMoving);
+//        operation2.add(whereToMove);
+//
+//        operations.add(operation2);
+//
+//
+//        --j;
+//      }
+//      whereToMove = calcNext(whereToMove);
+//    }
+    return operations;
   }
   @EpiTest(testDataFile = "hanoi.tsv")
   public static void computeTowerHanoiWrapper(TimedExecutor executor,

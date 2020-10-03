@@ -4,26 +4,41 @@ import epi.test_framework.EpiUserType;
 import epi.test_framework.GenericTest;
 import epi.test_framework.TestFailure;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 public class StackWithMax {
 
+  static class IndexedMax {
+    public int index;
+    public int value;
+    public IndexedMax(int index, int value) {
+      this.index = index;
+      this.value = value;
+    }
+  }
+
   public static class Stack {
+    java.util.Stack<Integer> stack = new java.util.Stack<>();
+    java.util.Stack<IndexedMax> maxs = new java.util.Stack<>();
     public boolean empty() {
-      // TODO - you fill in here.
-      return true;
+      return stack.empty();
     }
     public Integer max() {
-      // TODO - you fill in here.
-      return 0;
+      return maxs.peek().value;
     }
     public Integer pop() {
-      // TODO - you fill in here.
-      return 0;
+      if(maxs.peek().index == stack.size()) {
+        maxs.pop();
+      }
+      return stack.pop();
     }
     public void push(Integer x) {
-      // TODO - you fill in here.
-      return;
+      stack.push(x);
+      if(maxs.empty() || maxs.peek().value < x) {
+        maxs.push(new IndexedMax(stack.size(), x));
+      }
     }
   }
   @EpiUserType(ctorParams = {String.class, int.class})

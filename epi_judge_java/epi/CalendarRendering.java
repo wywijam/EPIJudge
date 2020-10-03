@@ -3,7 +3,12 @@ import epi.test_framework.EpiTest;
 import epi.test_framework.EpiUserType;
 import epi.test_framework.GenericTest;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+
+import static java.util.stream.Collectors.toList;
+
 public class CalendarRendering {
   @EpiUserType(ctorParams = {int.class, int.class})
 
@@ -29,8 +34,31 @@ public class CalendarRendering {
   @EpiTest(testDataFile = "calendar_rendering.tsv")
 
   public static int findMaxSimultaneousEvents(List<Event> A) {
-    // TODO - you fill in here.
-    return 0;
+    List<Endpoint> endpoints = A.stream().flatMap(event -> {
+      List<Endpoint> list = new ArrayList<>();
+      list.add(new Endpoint(event.start, true));
+      list.add(new Endpoint(event.finish, false));
+      return list.stream();
+    }).sorted((a, b) -> {
+      if(a.time == b.time) {
+        return a.isStart ? -1 : 1;
+      } else {
+        return a.time - b.time;
+      }
+    }).collect(toList());
+
+    int max = 0;
+    int curr = 0;
+    for(Endpoint endpoint : endpoints) {
+      if(endpoint.isStart) {
+        if(++curr > max) {
+          max = curr;
+        }
+      } else {
+        --curr;
+      }
+    }
+    return max;
   }
 
   public static void main(String[] args) {

@@ -4,22 +4,41 @@ import epi.test_framework.EpiUserType;
 import epi.test_framework.GenericTest;
 import epi.test_framework.TestFailure;
 
+import java.util.Arrays;
 import java.util.List;
 public class CircularQueue {
 
   public static class Queue {
-    public Queue(int capacity) {}
+    int queue[];
+    int beg = 0;
+    int end = 0;
+    public Queue(int capacity) {
+      queue = new int[capacity];
+    }
     public void enqueue(Integer x) {
-      // TODO - you fill in here.
+      if(end >= queue.length) {
+        if(beg > 0) {
+          int j = 0;
+          for(int i = beg; i < end; ++i) {
+            queue[j++] = queue[i];
+          }
+          end = j;
+          beg = 0;
+        } else {
+          queue = Arrays.copyOf(queue, queue.length * 2);
+        }
+      }
+      queue[end++] = x;
       return;
     }
     public Integer dequeue() {
-      // TODO - you fill in here.
-      return 0;
+      if(end < beg) {
+        throw new IllegalStateException();
+      }
+      return queue[beg++];
     }
     public int size() {
-      // TODO - you fill in here.
-      return 0;
+      return end-beg;
     }
     @Override
     public String toString() {

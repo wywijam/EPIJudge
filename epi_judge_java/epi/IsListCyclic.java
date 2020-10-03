@@ -3,10 +3,23 @@ import epi.test_framework.EpiTest;
 import epi.test_framework.GenericTest;
 import epi.test_framework.TestFailure;
 import epi.test_framework.TimedExecutor;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class IsListCyclic {
 
   public static ListNode<Integer> hasCycle(ListNode<Integer> head) {
-    // TODO - you fill in here.
+    Set<ListNode<Integer>> visited = new HashSet<>();
+    while(head != null) {
+      if(visited.contains(head)) {
+        return head;
+      }
+      visited.add(head);
+      head = head.next;
+    }
     return null;
   }
   @EpiTest(testDataFile = "is_list_cyclic.tsv")

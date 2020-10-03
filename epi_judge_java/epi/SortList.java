@@ -5,7 +5,6 @@ public class SortList {
   @EpiTest(testDataFile = "sort_list.tsv")
 
   public static ListNode<Integer> stableSortList(ListNode<Integer> L) {
-    // TODO - you fill in here.
     return null;
   }
 

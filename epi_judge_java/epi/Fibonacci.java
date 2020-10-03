@@ -6,8 +6,18 @@ public class Fibonacci {
   @EpiTest(testDataFile = "fibonacci.tsv")
 
   public static int fibonacci(int n) {
-    // TODO - you fill in here.
-    return -1;
+    int fib = 1;
+    int fibOld = 0;
+    if(n == 0) {
+      return fibOld;
+    }
+    for(int i = 2; i <= n; ++i) {
+      fib = fib ^ fibOld;
+      fibOld = fib ^ fibOld;
+      fib = fib ^ fibOld;
+      fib = fib + fibOld;
+    }
+    return fib;
   }
 
   public static void main(String[] args) {

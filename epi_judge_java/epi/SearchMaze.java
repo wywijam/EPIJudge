@@ -4,14 +4,18 @@ import epi.test_framework.EpiUserType;
 import epi.test_framework.GenericTest;
 import epi.test_framework.TestFailure;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+
 public class SearchMaze {
   @EpiUserType(ctorParams = {int.class, int.class})
 
   public static class Coordinate {
     public int x, y;
+
+    @Override
+    public int hashCode() {
+      return Objects.hash(x, y);
+    }
 
     public Coordinate(int x, int y) {
       this.x = x;
@@ -38,10 +42,50 @@ public class SearchMaze {
 
   public enum Color { WHITE, BLACK }
 
+  static void tryAddToQueue(Coordinate c, Coordinate prev, List<List<Color>> maze, Map<Coordinate, Coordinate> alreadyVisited, Queue<Coordinate> toVisit){
+    if(alreadyVisited.containsKey(c)) {
+      return;
+    }
+    if( c.x < 0 || c.y < 0 || c.x >= maze.size() || c.y >= maze.get(c.x).size() || maze.get(c.x).get(c.y) == Color.BLACK) {
+      return;
+    }
+    alreadyVisited.put(c, prev);
+    toVisit.add(c);
+  }
+
   public static List<Coordinate> searchMaze(List<List<Color>> maze,
                                             Coordinate s, Coordinate e) {
-    // TODO - you fill in here.
-    return Collections.emptyList();
+
+    Map<Coordinate, Coordinate> alreadyVisited = new HashMap<>();
+    Queue<Coordinate> toVisit = new LinkedList<>();
+    toVisit.add(s);
+
+    boolean found = false;
+    while(!toVisit.isEmpty()) {
+      Coordinate current = toVisit.poll();
+      if(current.equals(e) ) {
+        found = true;
+        break;
+      }
+      tryAddToQueue(new Coordinate(current.x - 1, current.y), current, maze, alreadyVisited, toVisit);
+      tryAddToQueue(new Coordinate(current.x + 1, current.y), current, maze, alreadyVisited, toVisit);
+      tryAddToQueue(new Coordinate(current.x, current.y - 1), current, maze, alreadyVisited, toVisit);
+      tryAddToQueue(new Coordinate(current.x, current.y + 1), current, maze, alreadyVisited, toVisit);
+
+    }
+    if(!found) {
+      return Collections.emptyList();
+    }
+    Coordinate backtrack = e;
+    List<Coordinate> path = new ArrayList<>();
+    while(backtrack != s) {
+      path.add(backtrack);
+      backtrack = alreadyVisited.get(backtrack);
+    }
+    path.add(s);
+    Collections.reverse(path);
+
+    return path;
   }
   public static boolean pathElementIsFeasible(List<List<Integer>> maze,
                                               Coordinate prev, Coordinate cur) {

@@ -5,9 +5,14 @@ import epi.test_framework.EpiTestExpectedType;
 import epi.test_framework.EpiUserType;
 import epi.test_framework.GenericTest;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.BiPredicate;
+
+import static java.util.stream.Collectors.toList;
+
 public class RemoveDuplicates {
   @EpiUserType(ctorParams = {String.class, String.class})
   //@include
@@ -47,7 +52,14 @@ public class RemoveDuplicates {
     }
   }
   public static void eliminateDuplicate(List<Name> names) {
-    // TODO - you fill in here.
+    Collections.sort(names, Comparator.comparing(n -> n.firstName));
+    int k = -1;
+    for(int i = 0; i < names.size(); ++i) {
+      if(i ==0 || !names.get(k).firstName.equals(names.get(i).firstName)) {
+        names.set(++k,names.get(i));
+      }
+    }
+    names.subList(k+1, names.size()).clear();
     return;
   }
   @EpiTest(testDataFile = "remove_duplicates.tsv")

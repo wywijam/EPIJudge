@@ -4,12 +4,24 @@ import epi.test_framework.GenericTest;
 import epi.test_framework.TimedExecutor;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 public class ReplaceAndRemove {
 
   public static int replaceAndRemove(int size, char[] s) {
-    // TODO - you fill in here.
-    return 0;
+    StringBuilder builder = new StringBuilder();
+    for(int i = 0; i < size; ++i) {
+      if(s[i] == 'a') {
+        builder.append("dd");
+      } else if(s[i] != 'b') {
+        builder.append(s[i]);
+      }
+    }
+    String str = builder.toString();
+    for(int i = 0; i < str.length(); ++i) {
+      s[i] = str.charAt(i);
+    }
+    return str.length();
   }
   @EpiTest(testDataFile = "replace_and_remove.tsv")
   public static List<String>
