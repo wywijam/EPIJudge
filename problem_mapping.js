@@ -750,7 +750,7 @@ problem_mapping = {
                 "total": 120
             },
             "Java: DoListsOverlap.java": {
-                "passed": 3,
+                "passed": 120,
                 "total": 120
             },
             "Python: do_lists_overlap.py": {
@@ -764,7 +764,7 @@ problem_mapping = {
                 "total": 512
             },
             "Java: DeleteNodeFromList.java": {
-                "passed": 0,
+                "passed": 512,
                 "total": 512
             },
             "Python: delete_node_from_list.py": {
@@ -792,7 +792,7 @@ problem_mapping = {
                 "total": 203
             },
             "Java: RemoveDuplicatesFromSortedList.java": {
-                "passed": 0,
+                "passed": 203,
                 "total": 203
             },
             "Python: remove_duplicates_from_sorted_list.py": {
@@ -806,7 +806,7 @@ problem_mapping = {
                 "total": 507
             },
             "Java: ListCyclicRightShift.java": {
-                "passed": 0,
+                "passed": 507,
                 "total": 507
             },
             "Python: list_cyclic_right_shift.py": {
@@ -834,7 +834,7 @@ problem_mapping = {
                 "total": 203
             },
             "Java: IsListPalindromic.java": {
-                "passed": 0,
+                "passed": 203,
                 "total": 203
             },
             "Python: is_list_palindromic.py": {
@@ -848,7 +848,7 @@ problem_mapping = {
                 "total": 208
             },
             "Java: PivotList.java": {
-                "passed": 0,
+                "passed": 208,
                 "total": 208
             },
             "Python: pivot_list.py": {
@@ -1034,7 +1034,7 @@ problem_mapping = {
                 "total": 948
             },
             "Java: LowestCommonAncestor.java": {
-                "passed": 0,
+                "passed": 948,
                 "total": 948
             },
             "Python: lowest_common_ancestor.py": {
@@ -1062,7 +1062,7 @@ problem_mapping = {
                 "total": 3849
             },
             "Java: SumRootToLeaf.java": {
-                "passed": 0,
+                "passed": 3849,
                 "total": 3849
             },
             "Python: sum_root_to_leaf.py": {
@@ -1076,7 +1076,7 @@ problem_mapping = {
                 "total": 7690
             },
             "Java: PathSum.java": {
-                "passed": 0,
+                "passed": 7690,
                 "total": 7690
             },
             "Python: path_sum.py": {
@@ -1090,7 +1090,7 @@ problem_mapping = {
                 "total": 3852
             },
             "Java: TreeInorder.java": {
-                "passed": 0,
+                "passed": 3852,
                 "total": 3852
             },
             "Python: tree_inorder.py": {
@@ -1104,7 +1104,7 @@ problem_mapping = {
                 "total": 3851
             },
             "Java: KthNodeInTree.java": {
-                "passed": 0,
+                "passed": 3851,
                 "total": 3851
             },
             "Python: kth_node_in_tree.py": {
@@ -1118,7 +1118,7 @@ problem_mapping = {
                 "total": 948
             },
             "Java: SuccessorInTree.java": {
-                "passed": 0,
+                "passed": 948,
                 "total": 948
             },
             "Python: successor_in_tree.py": {
@@ -1160,7 +1160,7 @@ problem_mapping = {
                 "total": 3852
             },
             "Java: TreeFromPreorderWithNull.java": {
-                "passed": 0,
+                "passed": 3852,
                 "total": 3852
             },
             "Python: tree_from_preorder_with_null.py": {
@@ -1174,7 +1174,7 @@ problem_mapping = {
                 "total": 3852
             },
             "Java: TreeConnectLeaves.java": {
-                "passed": 0,
+                "passed": 3852,
                 "total": 3852
             },
             "Python: tree_connect_leaves.py": {
@@ -1188,7 +1188,7 @@ problem_mapping = {
                 "total": 3852
             },
             "Java: TreeExterior.java": {
-                "passed": 0,
+                "passed": 15,
                 "total": 3852
             },
             "Python: tree_exterior.py": {

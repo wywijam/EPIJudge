@@ -10,8 +10,69 @@ import java.util.List;
 public class PivotList {
 
   public static ListNode<Integer> listPivoting(ListNode<Integer> l, int x) {
-    // TODO - you fill in here.
-    return null;
+    if(l == null) {
+      return l;
+    }
+    ListNode<Integer> smaller = null;
+    ListNode<Integer> smallerLast = null;
+    ListNode<Integer> exact = null;
+    ListNode<Integer> exactLast = null;
+    ListNode<Integer> bigger = null;
+    ListNode<Integer> biggerLast = null;
+
+    ListNode<Integer> node = l;
+    while(node != null) {
+      if(node.data < x) {
+        if(smaller == null) {
+          smaller = node;
+          smallerLast = node;
+        } else {
+          smallerLast.next = node;
+          smallerLast = smallerLast.next;
+        }
+      } else if(node.data > x) {
+        if(bigger == null) {
+          bigger = node;
+          biggerLast = node;
+        } else {
+          biggerLast.next = node;
+          biggerLast = biggerLast.next;
+        }
+      } else {
+        if(exact == null) {
+          exact = node;
+          exactLast = node;
+        } else {
+          exactLast.next = node;
+          exactLast = exactLast.next;
+        }
+      }
+      node = node.next;
+    }
+    ListNode<Integer> ret = null;
+    ListNode<Integer> retLast = null;
+    if(smaller != null) {
+      ret = smaller;
+      retLast = smallerLast;
+    }
+    if(exact != null) {
+      if(ret == null) {
+        ret = exact;
+      } else {
+        retLast.next = exact;
+      }
+      retLast = exactLast;
+    }
+    if(bigger != null) {
+      if(ret == null) {
+        ret = bigger;
+      } else {
+        retLast.next = bigger;
+      }
+      retLast = biggerLast;
+    }
+    retLast.next = null;
+    return ret;
   }
   public static List<Integer> linkedToList(ListNode<Integer> l) {
     List<Integer> v = new ArrayList<>();

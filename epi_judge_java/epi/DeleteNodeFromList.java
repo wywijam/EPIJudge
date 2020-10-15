@@ -6,7 +6,8 @@ public class DeleteNodeFromList {
 
   // Assumes nodeToDelete is not tail.
   public static void deletionFromList(ListNode<Integer> nodeToDelete) {
-    // TODO - you fill in here.
+    nodeToDelete.data = nodeToDelete.next.data;
+    nodeToDelete.next = nodeToDelete.next.next;
     return;
   }
   @EpiTest(testDataFile = "delete_node_from_list.tsv")

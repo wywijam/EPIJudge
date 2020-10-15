@@ -9,10 +9,21 @@ import java.util.Collections;
 import java.util.List;
 public class TreeConnectLeaves {
 
+  static void listCreationHelper(BinaryTreeNode<Integer> tree, List<BinaryTreeNode<Integer>> list) {
+    if(tree == null) {
+      return;
+    }
+    if(tree.left == null && tree.right == null) {
+      list.add(tree);
+    }
+    listCreationHelper(tree.left, list);
+    listCreationHelper(tree.right, list);
+  }
   public static List<BinaryTreeNode<Integer>>
   createListOfLeaves(BinaryTreeNode<Integer> tree) {
-    // TODO - you fill in here.
-    return Collections.emptyList();
+    List<BinaryTreeNode<Integer>> ret = new ArrayList<>();
+    listCreationHelper(tree, ret);
+    return ret;
   }
   @EpiTest(testDataFile = "tree_connect_leaves.tsv")
   public static List<Integer>

@@ -6,10 +6,30 @@ import epi.test_framework.TimedExecutor;
 import java.util.ArrayList;
 import java.util.List;
 public class TreeFromPreorderWithNull {
+  static int reconstructHelper(List<Integer> preorder, BinaryTreeNode<Integer> tree) {
+    int used = 1;
+    if(preorder.get(0) != null) {
+      tree.left = new BinaryTreeNode<>();
+      tree.left.data = preorder.get(0);
+      used += reconstructHelper(preorder.subList(1, preorder.size()), tree.left);
+    }
+    preorder = preorder.subList(used, preorder.size());
+    if(!preorder.isEmpty() && preorder.get(0) != null) {
+      tree.right = new BinaryTreeNode<>();
+      tree.right.data = preorder.get(0);
+      used += reconstructHelper(preorder.subList(1, preorder.size()), tree.right);
+    }
+    return used+1;
+  }
   public static BinaryTreeNode<Integer>
   reconstructPreorder(List<Integer> preorder) {
-    // TODO - you fill in here.
-    return null;
+    if(preorder.isEmpty() || preorder.get(0) == null) {
+      return null;
+    }
+    BinaryTreeNode<Integer> ret = new BinaryTreeNode<>();
+    ret.data = preorder.get(0);
+    reconstructHelper(preorder.subList(1, preorder.size()), ret);
+    return ret;
   }
   @EpiTest(testDataFile = "tree_from_preorder_with_null.tsv")
   public static BinaryTreeNode<Integer>

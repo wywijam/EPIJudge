@@ -6,14 +6,93 @@ import epi.test_framework.TimedExecutor;
 
 import java.util.HashSet;
 import java.util.Set;
+
+class ListInfo {
+  ListNode<Integer> cycleBegin;
+  int length;
+  ListInfo (ListNode<Integer> cb, int l) {
+    cycleBegin = cb;
+    length = l;
+  }
+  boolean hasCycle() {
+    return cycleBegin != null;
+  }
+}
+
 public class DoListsOverlap {
 
+  private static ListInfo getInfo(ListNode<Integer> list) {
+    ListNode<Integer> normal = list;
+    ListNode<Integer> fast = list;
+    int length = 0;
+    while(fast != null && fast.next != null) {
+      fast = fast.next.next;
+      normal = normal.next;
+      length += 2;
+      if(fast == normal) {
+        break;
+      }
+    }
+    if(fast != null && fast.next == null) {
+      return new ListInfo(null, ++length);
+    } else if(fast == null) {
+      return new ListInfo(null, length);
+    }
+    fast = normal;
+    length = 1;
+    while(normal.next != fast) {
+      normal = normal.next;
+      ++length;
+    }
+    normal = list;
+    fast = list;
+    for(int i = 0; i < length; ++i) {
+      fast = fast.next;
+    }
+    while(normal != fast) {
+      normal = normal.next;
+      fast = fast.next;
+    }
+    return new ListInfo(normal, length);
+  }
   public static ListNode<Integer> overlappingLists(ListNode<Integer> l0,
                                                    ListNode<Integer> l1) {
-    ListNode<Integer> normal = l0;
-    ListNode<Integer> fast = l1;
+    ListInfo info0 = getInfo(l0);
+    ListInfo info1 = getInfo(l1);
+    if(info0.hasCycle() != info1.hasCycle()) {
+      return null;
+    }
+    if(info0.hasCycle()) {
+      int count = info0.length;
+      ListNode<Integer> iter = info1.cycleBegin;
+      while(count > 0) {
+        if(info0.cycleBegin == iter) {
+          return iter;
+        }
+        iter = iter.next;
+        --count;
+      }
+      return null;
 
-    return null;
+    } else {
+      int lengthDiff = info0.length - info1.length;
+      ListNode<Integer> first = l0;
+      ListNode<Integer> second = l1;
+      if(lengthDiff < 0) {
+        first = l1;
+        second = l0;
+        lengthDiff = Math.abs(lengthDiff);
+      }
+      while(lengthDiff > 0) {
+        first = first.next;
+        --lengthDiff;
+      }
+      while(first != second && first != null) {
+        first = first.next;
+        second = second.next;
+      }
+      return first;
+    }
   }
   @EpiTest(testDataFile = "do_lists_overlap.tsv")
   public static void

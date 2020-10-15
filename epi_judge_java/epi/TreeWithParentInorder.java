@@ -5,47 +5,54 @@ import epi.test_framework.GenericTest;
 import java.util.ArrayList;
 import java.util.List;
 public class TreeWithParentInorder {
-  public static BinaryTree<Integer> goAsFarLeft(BinaryTree<Integer> tree) {
-    while(tree.left != null) {
-      tree = tree.left;
+  static BinaryTree<Integer> findFirstNode(BinaryTree<Integer> node) {
+    while(node.left != null) {
+      node = node.left;
     }
-    return tree;
+    return node;
+  }
+  static BinaryTree<Integer> findFirstChild(BinaryTree<Integer> node) {
+    if(node == null) {
+      return node;
+    }
+    while(node.left != null) {
+      node = node.left;
+    }
+    return node;
+  }
+  static BinaryTree<Integer> findFirstRightParent(BinaryTree<Integer> node) {
+    if(node == null) {
+      return node;
+    }
+    while(node.parent != null) {
+      if(node.parent.left == node) {
+        return node.parent;
+      }
+      node = node.parent;
+    }
+    return null;
   }
 
-  static boolean isLeftChild(BinaryTree<Integer> tree) {
-    return tree.parent.left != null && tree.parent.left.data == tree.data;
+  static BinaryTree<Integer> findSuccessor(BinaryTree<Integer> node) {
+    BinaryTree<Integer> ret = findFirstChild(node.right);
+    if(ret == null) {
+      ret = findFirstRightParent(node);
+    }
+    return ret;
   }
 
   @EpiTest(testDataFile = "tree_with_parent_inorder.tsv")
   public static List<Integer> inorderTraversal(BinaryTree<Integer> tree) {
-
-    List<Integer> inorder = new ArrayList<>();
-    BinaryTree<Integer> prev = null;
-    BinaryTree<Integer> current = tree;
-
-    while(current != null) {
-      BinaryTree<Integer> next = null;
-      if(prev == current.parent) {
-        if(current.left != null) {
-          next = current.left;
-        }
-      }
-      if(next == null) {
-        if (current.right != null && prev == current.right) {
-          next = current.parent;
-        } else {
-          inorder.add(current.data);
-          if (current.right != null) {
-            next = current.right;
-          } else {
-            next = current.parent;
-          }
-        }
-      }
-      prev = current;
-      current = next;
+    List<Integer> ret = new ArrayList<>();
+    if(tree == null) {
+      return ret;
     }
-    return inorder;
+    tree = findFirstNode(tree);
+    while(tree != null) {
+      ret.add(tree.data);
+      tree = findSuccessor(tree);
+    }
+    return ret;
   }
 
   public static void main(String[] args) {
